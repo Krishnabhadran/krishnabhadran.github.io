@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RescueRover – Expandable Minimap HUD</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body { width:100%; height:100%; overflow:hidden; background:#000; font-family:'Orbitron',sans-serif; }
+    #game-container { position:relative; width:100vw; height:100vh; }
+  
+    .panel {
+      position:absolute; width:220px; height:260px;
+      background:rgba(0,0,0,0.6); border:2px solid #0ff; border-radius:8px;
+      color:#0ff; z-index:10; padding:8px; overflow:hidden;
+      transition: all 0.3s ease;
+    }
+    /* Normal positions */
+    #left-map-panel  { top:20px; left:20px; }
+    #left-data-panel { top:300px; left:20px; }
+    #right-map-panel  { top:20px; right:20px; }
+    #right-data-panel { top:300px; right:20px; }
+  
+    /* Expanded state */
+    .panel.expanded {
+      position:fixed !important;
+      top:5% !important; left:5% !important;
+      width:90% !important; height:90% !important;
+      z-index:1000;
+      overflow-y: auto;
+      background:rgba(0,0,0,0.9);
+    }
+  
+    .panel.expanded .map-container {
+      height:75% !important;
+    }
+  
+
+  
+    .panel.expanded canvas {
+      height:120px !important;
+    }
+  
+    .panel h4 { text-align:center; margin-bottom:6px; font-size:1em; }
+    .map-container { position:relative; width:100%; height:140px; margin-bottom:6px; }
+    .map-container img { width:100%; height:100%; border-radius:4px; display:block; }
+    .click-capture { position:absolute; top:0;left:0;width:100%;height:100%;display:none;cursor:crosshair; }
+    .point { position:absolute;width:12px;height:12px;background:#f33;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none; }
+  
+    button {
+      display:block; width:100%; margin-bottom:6px;
+      padding:6px 0; background:#08f; color:#fff;
+      border:none; border-radius:4px; cursor:pointer;
+      font-family:'Orbitron',sans-serif; text-transform:uppercase;
+    }
+
+
+    button.active { background:#f33; }
+  
+    /* expand icon */
+    .expand-btn {
+      position:absolute; top:6px; right:6px;
+      background:rgba(0,255,255,0.8); border:none; border-radius:4px;
+      width:24px; height:24px; line-height:24px; text-align:center;
+      cursor:pointer; font-size:14px; color:#000; z-index:11;
+    }
+  
+    .panel canvas {
+      display:block; width:100%; height:60px; margin-bottom:6px;
+      background:rgba(0,255,255,0.1); border-radius:4px;
+    }
+  
+    #status-bar {
+      position:absolute; bottom:0; left:0; width:100%; height:40px;
+      background:rgba(0,0,0,0.8); border-top:2px solid #0ff;
+      display:flex; align-items:center; justify-content:center;
+      color:#0ff; font-size:0.9em; z-index:10;
+    }
+    /* Game Center Icon */
+#center-icon {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4em;
+  color: #0ff;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 20;
+}
+.blur-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  backdrop-filter: blur(20px);
+  background: rgba(12, 12, 12, 0.4);
+  z-index: 1;
+}
+
+
+#main-tab {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 40px;
+  border-color: rgb(255, 0, 21);
+  
+  background: radial-gradient(circle at center, rgba(0,255,255,0.1), rgba(0,0,0,0.9));
+  z-index: 0;
+}
+#map-arrow {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+     
+      background: rgb(0, 217, 255);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* triangle pointing down */
+      transform: translate(-50%, -50%);
+      /* pointer-events: none; */
+      z-index: 20;
+    }
+
+
+  </style>
+  
+</head>
+<body>
+    
+  <div id="game-container">
+    <!-- GAME CENTER ICON -->
+     <div class="blur-navbar"></div> 
+    <!-- padding-top: 60px; /* Same height as navbar */ -->
+
+    <iframe id="main-tab" src="https://mipcm.com/">
+
+        <div id="center-icon"></div>
+    </iframe>
+      
+
+
+    <!-- LEFT MINIMAP PANEL -->
+    <div id="left-map-panel" class="panel">
+      <button class="expand-btn" onclick="toggleExpand('left-map-panel', this)">⛶</button>
+      <h4>Thermal Map</h4>
+      <div class="map-container">
+        <img src="http://192.168.20.8" alt="Left Map">
+        <div id="left-capture" class="click-capture"></div>
+      </div>
+      <button id="left-toggle">Enable </button>
+    </div>
+
+    <!-- LEFT DATA PANEL -->
+    <div id="left-data-panel" class="panel">
+        <button class="expand-btn" onclick="toggleExpand('left-data-panel', this)">⛶</button>
+
+      <h4>Incidents</h4>
+      <canvas id="nameChart"></canvas>
+      <h4>Depth (m)</h4>
+      <canvas id="depthChart"></canvas>
+    </div>
+
+    <!-- RIGHT MINIMAP PANEL -->
+    <div id="right-map-panel" class="panel">
+      <button class="expand-btn" onclick="toggleExpand('right-map-panel', this)">⛶</button>
+      <h4>Right Mini Map</h4>
+      <div class="map-container" id="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31359.558315801165!2d76.0135106!3d10.738738699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1746368673066!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        
+        <div id="map-arrow"></div>
+        <div id="right-capture" class="click-capture"></div>
+      </div>
+      <button id="right-toggle">Enable </button>
+    </div>
+
+    <!-- RIGHT DATA PANEL -->
+    <div id="right-data-panel" class="panel">
+        <button class="expand-btn" onclick="toggleExpand('right-data-panel', this)">⛶</button>
+
+      <h4>Climate</h4>
+      <canvas id="climateChart"></canvas>
+      <h4>Extra Depth</h4>
+      <canvas id="depthChartRight"></canvas>
+    </div>
+
+    <!-- STATUS BAR -->
+    <div id="status-bar">
+      🚁 RescueRover Active | Players Alive: 49 | Kills: 2
+    </div>
+
+  </div>
+
+  <script>
+       let x = 5, y = 6;  // Starting at the center of the map
+
+// Function to move the arrow inside the map container
+function updateArrow() {
+  const container = document.getElementById('map-container');
+  const arrow = document.getElementById('map-arrow');
+  const w = container.clientWidth;  // Get width of map container
+  const h = container.clientHeight; // Get height of map container
+
+  // Calculate the position of the arrow as a percentage of the container's size
+  const px = x * w;
+  const py = y * h;
+
+  // Set the position of the arrow
+  arrow.style.left = `${px}px`;
+  arrow.style.top = `${py}px`;
+}
+
+// Function to fetch new x, y values from Django (simulated here for the example)
+async function fetchPosition() {
+  try {
+    const res = await fetch('/api/direction/');  // Your Django endpoint that provides x, y
+    const data = await res.json();
+    x = data.x;  // Expecting values between 0.0 and 1.0
+    y = data.y;
+    updateArrow();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+// Call the function every 500ms to update the position
+setInterval(fetchPosition, 500);
+    // Expand/collapse panels
+    function toggleExpand(panelId, btn) {
+      const panel = document.getElementById(panelId);
+      const expanded = panel.classList.toggle('expanded');
+      btn.textContent = expanded ? '❐' : '⛶';
+    
+    }
+
+    // Enable point placement
+    function makeToggle(side) {
+      const btn = document.getElementById(`${side}-toggle`);
+      const cap = document.getElementById(`${side}-capture`);
+      
+      btn.addEventListener('click', () => {
+        const on = cap.style.display === 'block';
+        cap.style.display = on ? 'none' : 'block';
+        btn.textContent = on ? 'Enable Point' : 'Disable Point';
+        btn.classList.toggle('active', !on);
+      });
+      cap.addEventListener('click', e => {
+        const rect = cap.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        const p = document.createElement('div');
+        p.className = 'point';
+        p.style.left = `${x}px`; p.style.top = `${y}px`;
+        cap.appendChild(p);
+      });
+    }
+    makeToggle('left');
+    makeToggle('right');
+
+    // Charts
+    new Chart(document.getElementById("nameChart"), {
+      type: "bar",
+      data: { labels:["A","B","C","D"], datasets:[{ data:[5,12,7,3], backgroundColor:"#0ff" }]},
+      options:{responsive:false,plugins:{legend:{display:false}}}
+    });
+    new Chart(document.getElementById("depthChart"), {
+      type:"line",
+      data:{labels:["P1","P2","P3","P4"],datasets:[{data:[10,18,13,22],borderColor:"#0f0",fill:false}]},
+      options:{responsive:false,plugins:{legend:{display:false}}}
+    });
+    new Chart(document.getElementById("climateChart"), {
+      type:"pie",
+      data:{ labels:["Humid","Dry","Rainy","Stormy"], datasets:[{ data:[40,25,20,15], backgroundColor:["#ff0","#f90","#0ff","#f0f"] }]},
+      options:{responsive:false,plugins:{legend:{position:"bottom"}}}
+    });
+    new Chart(document.getElementById("depthChartRight"), {
+      type:"line",
+      data:{labels:["P1","P2","P3","P4"],datasets:[{data:[15,25,20,30],borderColor:"#f33",fill:false}]},
+      options:{responsive:false,plugins:{legend:{display:false}}}
+    });
+
+
+    /////
+   
+  </script>
+</body>
+</html>
