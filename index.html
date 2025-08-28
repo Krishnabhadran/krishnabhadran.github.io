@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishnabhadran | Portfolio</title>
+   <link rel="icon" type="image/png" href="images/ChatGPT Image Aug 28, 2025, 09_01_45 PM.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000, #0a0f1f, #001f3f);
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+    }
+    .neon-text {
+      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 40px #00f7ff;
+      color: #e0faff;
+    }
+      /* Loader */
+    #loader {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: black;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      overflow: hidden;
+    }
+    .runner {
+      position: relative;
+      width: 180px; /* adjust size */
+      height: auto;
+      filter: drop-shadow(0 0 20px cyan);
+      animation: runBounce 3s linear infinite alternate;
+    }
+
+    @keyframes runBounce {
+      0%   { left: -20vw; transform: scaleX(1); }   /* run right */
+      100% { left: 80vw;  transform: scaleX(1); }   /* reached right */
+    }
+
+    /* ===== NAVBAR LINK STYLES (desktop only) ===== */
+    @media (min-width: 768px) {
+      nav a {
+        position: relative;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0%;
+        height: 2px;
+        background: cyan;
+        transition: width 0.3s ease;
+      }
+      nav a:hover {
+        color: #00f7ff;
+        transform: scale(1.1);
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+    }
+    /* ===== FOOTER STYLES ===== */
+    .footer {
+      background: rgba(20, 20, 20, 0.9);
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 60px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer h2 {
+      color: #fff;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #00f0ff, #ff00c3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .footer p { color: #aaa; font-size: 1rem; margin-bottom: 20px; }
+    .footer .social-links {
+      display: flex; justify-content: center; gap: 20px;
+    }
+    .footer .social-links a {
+      font-size: 1.8rem; color: #fff; transition: 0.3s;
+    }
+    .footer .social-links a:hover {
+      color: #00f0ff;
+      text-shadow: 0 0 10px #00f0ff, 0 0 20px #ff00c3;
+      transform: scale(1.2);
+    }
+    .footer .copyright {
+      color: #666; font-size: 0.9rem; margin-top: 30px;
+    }
+  </style>
+</head>
+<body class="text-white">
+
+  <!-- Loader -->
+    <!-- Loader -->
+  <div id="loader">
+    <!-- Replace with your running boy GIF -->
+    <img src="images/Happy-Homer-Simpson-GIF-unscreen.gif" alt="Running Boy Loader" class="runner">
+  </div>
+
+
+  <!-- Navbar -->
+  <nav class="fixed w-full top-0 bg-black bg-opacity-60 backdrop-blur-lg z-50 p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold neon-text">⚡ Krishnabhadran</h1>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-6">
+      <a  href="#about">About</a>
+      <a  href="#skills">Skills</a>
+      <a  href="#projects">Projects</a>
+      <a  href="#experience">Experience</a>
+      <a   href="#contact">Contact</a>
+    </div>
+
+    <!-- Mobile Hamburger -->
+    <button id="menu-btn" class="md:hidden flex flex-col space-y-1 focus:outline-none">
+      <span class="w-6 h-0.5 bg-white"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden fixed top-16 right-4 bg-black bg-opacity-80 rounded-xl p-4 flex flex-col space-y-4 z-50">
+    <a href="#about" class="hover:text-cyan-400 transition">About</a>
+    <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
+    <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
+    <a href="#experience" class="hover:text-cyan-400 transition">Experience</a>
+    <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="h-screen flex flex-col justify-center items-center text-center px-6">
+    <img src="/images/ChatGPT Image Aug 28, 2025, 09_01_45 PM.png" alt="Avatar" class="w-40 h-40 rounded-full border-4 border-cyan-400 shadow-lg mb-6">
+    <h2 class="text-4xl md:text-6xl font-extrabold neon-text">Hey, I'm Krishnabhadran 🚀</h2>
+    <p class="text-gray-300 mt-4 max-w-2xl">
+      10th std @ IHRD • Tech Fest Winner • Robotics Enthusiast • Future Innovator in IoT, Smart Cities, and AI-powered Systems.
+    </p>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 px-6 max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-12 neon-text">🌌 About Me</h2>
+    <div class="glass-card p-8 rounded-2xl text-center">
+      <p class="text-gray-300 text-lg">
+        I'm a young innovator passionate about <span class="text-cyan-400">Robotics, IoT, and Future Technologies</span>.  
+        My journey started with Arduino & ESP32 boards, and now I’m exploring advanced robotics,  
+        AI, and smart city projects to shape a better future.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-20 px-6 bg-black bg-opacity-60">
+    <h2 class="text-4xl font-bold text-center mb-12 neon-text">⚙️ Skills</h2>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div class="glass-card p-6 rounded-2xl text-center">Arduino / ESP32 / Raspberry Pi</div>
+      <div class="glass-card p-6 rounded-2xl text-center">Python, C/C++, HTML, CSS</div>
+      <div class="glass-card p-6 rounded-2xl text-center">Radio Communication & IoT Modules</div>
+      <div class="glass-card p-6 rounded-2xl text-center">Robotics & Automation</div>
+      <div class="glass-card p-6 rounded-2xl text-center">Electronics & Circuit Design</div>
+      <div class="glass-card p-6 rounded-2xl text-center">AI & Smart City Concepts</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20 px-6">
+    <h2 class="text-4xl font-bold text-center mb-12 neon-text">🚀 Upcoming Projects</h2>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      
+      <!-- Project 1 -->
+      <div class="glass-card p-6 rounded-2xl flex flex-col">
+        <img src="images/Smart Eco System Design.png" class="rounded-lg mb-4">
+        <h3 class="text-2xl font-bold mb-2">Smart City EO System</h3>
+        <p class="text-gray-300 flex-grow">Building an advanced Earth Observation system integrating IoT + AI for smart cities.</p>
+        <button id="goToPageButton1" class="mt-4 py-2 px-4 rounded-lg bg-cyan-500 hover:bg-cyan-600 transition">Learn More</button>
+      </div>
+      
+      <!-- Project 2 -->
+      <div class="glass-card p-6 rounded-2xl flex flex-col">
+        <img src="images/ChatGPT Image Aug 28, 2025, 09_42_00 PM.png" class="rounded-lg mb-4">
+        <h3 class="text-2xl font-bold mb-2">Rescue Rover 2.0</h3>
+        <p class="text-gray-300 flex-grow">An upgraded rover with AI automation — 3rd place @ Wayanad Tech Fest.</p>
+        <button id="goToPageButton2" class="mt-4 py-2 px-4 rounded-lg bg-cyan-500 hover:bg-cyan-600 transition">Learn More</button>
+      </div>
+      
+      <!-- Project 3 -->
+      <div class="glass-card p-6 rounded-2xl flex flex-col">
+        <img src="images/Futuro de la Educación Digital.png" class="rounded-lg mb-4">
+        <h3 class="text-2xl font-bold mb-2">Future EdTech</h3>
+        <p class="text-gray-300 flex-grow">Immersive education tools with IoT, Python & VR for the next-gen classroom.</p>
+        <button id="goToPageButton3" class="mt-4 py-2 px-4 rounded-lg bg-cyan-500 hover:bg-cyan-600 transition">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="py-20 px-6 bg-black bg-opacity-60">
+    <h2 class="text-4xl font-bold text-center mb-12 neon-text">💡 Experience</h2>
+    <div class="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+      <div class="glass-card p-6 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-2">Radio Communication Modules</h3>
+        <p class="text-gray-300">Hands-on with LoRa, RF, and IoT-based modules for disaster support robotics.</p>
+      </div>
+      <div class="glass-card p-6 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-2">Robotics & Boards</h3>
+        <p class="text-gray-300">Experience with Arduino, ESP32, Raspberry Pi, integrating sensors and AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-6">
+    <h2 class="text-4xl font-bold text-center mb-12 neon-text">📬 Contact Me</h2>
+    <div class="glass-card max-w-xl mx-auto p-8 rounded-2xl">
+      <form action="https://formspree.io/f/meoleqeo" method="POST" class="space-y-4">
+        <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded-lg bg-transparent border border-cyan-400 focus:outline-none">
+        <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 rounded-lg bg-transparent border border-cyan-400 focus:outline-none">
+        <textarea name="message" rows="4" placeholder="Your Message" required class="w-full p-3 rounded-lg bg-transparent border border-cyan-400 focus:outline-none"></textarea>
+        <button type="submit" class="w-full py-3 rounded-lg bg-cyan-500 hover:bg-cyan-600 transition">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER SECTION ====== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h2>Connect with Me 🌐</h2>
+      <p>Let’s build something futuristic together!</p>
+      <div class="social-links">
+        <a href="https://instagram.com/krishnabhadran__" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/Krishnabhadran" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="myprojectsworkmail@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <p class="copyright">© 2025 Krishnabhadran K | Built with 💜 Futuristic Vibes</p>
+  </footer>
+
+  <script>
+    // Loader control with delay
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+      }, 2000); // stays 4s, change to 6000 for 6s
+    });
+
+
+
+    
+    document.getElementById("goToPageButton1" ).onclick = function() {
+        window.location.href = "new.html"; 
+    };
+     document.getElementById("goToPageButton2" ).onclick = function() {
+        window.location.href = "new.html"; 
+    };
+     document.getElementById("goToPageButton3").onclick = function() {
+        window.location.href = "new.html"; 
+    };
+
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
