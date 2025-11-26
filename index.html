@@ -107,6 +107,79 @@
     .footer .copyright {
       color: #666; font-size: 0.9rem; margin-top: 30px;
     }
+    :root {
+  --primary-color: #2b2f3a;
+  --accent-color: #4e90ff;
+  --bg-color: #ffffff;
+  --card-bg: #f5f7fa;
+  --text-color: #333;
+  --border-radius: 8px;
+}
+
+.download-section {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 24px;
+  background: var(--bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  font-family: “Segoe UI”, Tahoma, sans-serif;
+}
+
+.download-section__title {
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.download-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: var(--border-radius);
+  margin-bottom: 16px;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.download-item:hover {
+  background: #e9edf4;
+  transform: translateY(-2px);
+}
+
+.download-item__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.download-item__name {
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.download-item__desc {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 0;
+}
+
+.download-btn {
+  text-decoration: none;
+  background: var(--accent-color);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.download-btn:hover {
+  background: #346bcc;
+}
+
   </style>
 </head>
 <body class="text-white">
@@ -157,6 +230,33 @@
       10th std @ IHRD • Tech Fest Winner • Robotics Enthusiast • Future Innovator in IoT, Smart Cities, and AI-powered Systems.
     </p>
   </section>
+<section class="download-section">
+  <h2 class="download-section__title">Downloads</h2>
+
+  <div class="download-item">
+    <div class="download-item__info">
+      <p class="download-item__name">Document 1 (DOCX)</p>
+      <p class="download-item__desc">A brief description or version info.</p>
+    </div>
+    <a href="downloads/file1.docx" download class="download-btn">Download</a>
+  </div>
+
+  <div class="download-item">
+    <div class="download-item__info">
+      <p class="download-item__name">Notes (PDF)</p>
+      <p class="download-item__desc">Lecture notes / summary.</p>
+    </div>
+    <a href="downloads/notes.pdf" download class="download-btn">Download</a>
+  </div>
+
+  <div class="download-item">
+    <div class="download-item__info">
+      <p class="download-item__name">Images (ZIP)</p>
+      <p class="download-item__desc">High-res images compressed.</p>
+    </div>
+    <a href="downloads/images.zip" download class="download-btn">Download</a>
+  </div>
+</section>
 
   <!-- About -->
   <section id="about" class="py-20 px-6 max-w-6xl mx-auto">
@@ -289,3 +389,4 @@
   </script>
 </body>
 </html>
+
