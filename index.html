@@ -107,78 +107,105 @@
     .footer .copyright {
       color: #666; font-size: 0.9rem; margin-top: 30px;
     }
-    :root {
+   :root {
   --primary-color: #2b2f3a;
   --accent-color: #4e90ff;
   --bg-color: #ffffff;
   --card-bg: #f5f7fa;
   --text-color: #333;
+  --text-muted: #666;
   --border-radius: 8px;
+  --shadow-color: rgba(0, 0, 0, 0.04);
 }
 
+/* Download / “box” container */
 .download-section {
-  max-width: 480px;
+  max-width: 500px;
   margin: 40px auto;
-  padding: 24px;
+  padding: 28px 24px;
   background: var(--bg-color);
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  font-family: “Segoe UI”, Tahoma, sans-serif;
+  box-shadow: 0 4px 12px var(--shadow-color), 0 2px 6px var(--shadow-color);
+  font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
+/* Section title */
 .download-section__title {
   margin-bottom: 24px;
-  font-size: 24px;
+  font-size: 26px;
   color: var(--primary-color);
   text-align: center;
+  font-weight: 600;
 }
 
+/* Individual download item “card” */
 .download-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: var(--card-bg);
-  padding: 16px;
+  padding: 14px 18px;
   border-radius: var(--border-radius);
-  margin-bottom: 16px;
-  transition: transform 0.1s ease, background 0.2s ease;
+  margin-bottom: 18px;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .download-item:hover {
-  background: #e9edf4;
+  background: #eaf1fc;
   transform: translateY(-2px);
 }
 
+/* Info block (name + description) */
 .download-item__info {
   display: flex;
   flex-direction: column;
 }
 
+/* File name */
 .download-item__name {
   font-weight: 600;
   color: var(--text-color);
   margin: 0;
+  font-size: 16px;
 }
 
+/* File description / subtext */
 .download-item__desc {
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
   margin: 4px 0 0;
 }
 
+/* Download button */
 .download-btn {
   text-decoration: none;
   background: var(--accent-color);
   color: #fff;
-  padding: 8px 16px;
+  padding: 9px 18px;
   border-radius: var(--border-radius);
   font-size: 14px;
-  transition: background 0.2s ease;
+  font-weight: 500;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .download-btn:hover {
-  background: #346bcc;
+  background: #3677e8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Optional: make it responsive */
+@media (max-width: 600px) {
+  .download-section {
+    padding: 20px 16px;
+    margin: 30px 12px;
+  }
+  .download-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
+
 
   </style>
 </head>
@@ -384,6 +411,7 @@
   </script>
 </body>
 </html>
+
 
 
 
