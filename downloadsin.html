@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Individual Downloads</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #020617;
+      --card-bg: #020617;
+      --accent: #22d3ee;
+      --accent-soft: rgba(34, 211, 238, 0.2);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: rgba(148, 163, 184, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 40%, #000 100%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 24px;
+      padding: 28px 20px 32px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.92));
+      box-shadow: 0 0 60px rgba(34, 211, 238, 0.12);
+      border: 1px solid var(--border-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wrapper::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.12), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.11), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .title-block h1 {
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-pill {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background-color: rgba(15, 23, 42, 0.8);
+      color: var(--accent);
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .downloads-grid {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .downloads-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .download-card {
+      position: relative;
+      border-radius: 18px;
+      padding: 14px 14px 16px;
+      background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.18), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 1));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .download-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .download-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .download-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .card-footer {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      background: radial-gradient(circle at top, rgba(34, 211, 238, 0.26), rgba(15, 23, 42, 1));
+      color: #ecfeff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
+    }
+
+    .btn-download span.icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .btn-download:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.7);
+      border-color: rgba(56, 189, 248, 0.9);
+      background: radial-gradient(circle at top, rgba(45, 212, 191, 0.35), rgba(15, 23, 42, 1));
+    }
+
+    .btn-download:active {
+      transform: translateY(0);
+      box-shadow: 0 0 16px rgba(34, 211, 238, 0.6);
+    }
+
+    .size-pill {
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-muted);
+    }
+
+    .hint-text {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrapper">
+    <header class="page-header">
+      <div class="title-block">
+        <div class="title-pill">Downloads</div>
+        <h1>Individual <span style="color: var(--accent);">Downloads</span></h1>
+        <p class="subtitle">Access project PDFs and resources from my portfolio.</p>
+      </div>
+      <div class="badge">krishnabhadran.github.io&nbsp;/&nbsp;downloads</div>
+    </header>
+
+    <section class="downloads-grid">
+      <article class="download-card">
+        <div>
+          <div class="download-label">Group 2 · PDF</div>
+          <div class="download-title">Sample PDF 1</div>
+          <div class="download-meta">Project documentation and overview.</div>
+        </div>
+        <div class="card-footer">
+          <span class="size-pill">~ 1.2 MB · PDF</span>
+          <a class="btn-download" href="sample1.pdf" download>
+            <span class="icon">⭳</span>
+            <span>Download</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="download-card">
+        <div>
+          <div class="download-label">Group 3 · PDF</div>
+          <div class="download-title">Sample PDF 2</div>
+          <div class="download-meta">Complete writeup with diagrams.</div>
+        </div>
+        <div class="card-footer">
+          <span class="size-pill">~ 980 KB · PDF</span>
+          <a class="btn-download" href="sample2.pdf" download>
+            <span class="icon">⭳</span>
+            <span>Download</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="download-card">
+        <div>
+          <div class="download-label">Special · PDF</div>
+          <div class="download-title">Sample PDF 3</div>
+          <div class="download-meta">Additional resources and references.</div>
+        </div>
+        <div class="card-footer">
+          <span class="size-pill">~ 2.4 MB · PDF</span>
+          <a class="btn-download" href="sample3.pdf" download>
+            <span class="icon">⭳</span>
+            <span>Download</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <p class="hint-text">Tip: Rename the titles and links above to match your real project PDFs.</p>
+  </main>
+</body>
+</html>
