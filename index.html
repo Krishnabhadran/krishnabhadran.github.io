@@ -4,23 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Krishnabhadran | Portfolio</title>
-   <link rel="icon" type="image/png" href="images/ChatGPT Image Aug 28, 2025, 09_01_45 PM.png">
+  <link rel="icon" type="image/png" href="images/ChatGPT Image Aug 28, 2025, 09_01_45 PM.png">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
- <link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="text-white">
 
   <!-- Loader -->
-    <!-- Loader -->
   <div id="loader">
     <!-- Replace with your running boy GIF -->
     <img src="images/Happy-Homer-Simpson-GIF-unscreen.gif" alt="Running Boy Loader" class="runner">
   </div>
-
 
   <!-- Navbar -->
   <nav class="fixed w-full top-0 bg-black bg-opacity-60 backdrop-blur-lg z-50 p-4 flex justify-between items-center">
@@ -28,11 +24,11 @@
 
     <!-- Desktop Menu -->
     <div class="hidden md:flex space-x-6">
-      <a  href="#about">About</a>
-      <a  href="#skills">Skills</a>
-      <a  href="#projects">Projects</a>
-      <a  href="#experience">Experience</a>
-      <a   href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </div>
 
     <!-- Mobile Hamburger -->
@@ -60,28 +56,56 @@
       10th std @ IHRD • Tech Fest Winner • Robotics Enthusiast • Future Innovator in IoT, Smart Cities, and AI-powered Systems.
     </p>
   </section>
-<section class="download-section">
-  <h2 class="download-section__title">Downloads</h2>
 
-  <div class="download-item">
-    <div class="download-item__info">
-      <p class="download-item__name"> Group 2 (PDF)</p>
-      <p class="download-item__desc">Rescue Rover</p>
+
+  <!-- Downloads (Updated – themed like generated page) -->
+  <section id="downloads" class="py-20 px-6 bg-black bg-opacity-60">
+    <h2 class="text-4xl font-bold text-center mb-12 neon-text">📂 Downloads</h2>
+<center> <a href="downloadsin.html" 
+             class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400 bg-cyan-500/20 hover:bg-cyan-500/40 transition text-[0.7rem] tracking-[0.18em] uppercase">
+            <span class="text-lg leading-none">⭳</span>
+  <span>Individual =></span>
+          </a></center>
+    <div class="max-w-5xl mx-auto grid gap-6 md:grid-cols-2">
+      <!-- Card 1 -->
+      <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-cyan-500/40">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-400 mb-1">Group 2 · PDF</p>
+          <h3 class="text-xl font-semibold mb-1">Rescue Rover</h3>
+          <p class="text-sm text-gray-300">Project documentation and overview.</p>
+        </div>
+        <div class="mt-4 flex items-center justify-between gap-3">
+          <span class="text-xs px-3 py-1 rounded-full border border-gray-500/50 text-gray-300">~ 1.2 MB · PDF</span>
+          <a href="downloads1/rescuerover.pdf" download
+             class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400 bg-cyan-500/20 hover:bg-cyan-500/40 transition text-[0.7rem] tracking-[0.18em] uppercase">
+            <span class="text-lg leading-none">⭳</span>
+            <span>Download</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-cyan-500/40">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-400 mb-1">Group 3 · PDF</p>
+          <h3 class="text-xl font-semibold mb-1">Home Monitoring System</h3>
+          <p class="text-sm text-gray-300">Full report with circuit details.</p>
+        </div>
+        <div class="mt-4 flex items-center justify-between gap-3">
+          <span class="text-xs px-3 py-1 rounded-full border border-gray-500/50 text-gray-300">~ 980 KB · PDF</span>
+          <a href="downloads1/monitoring.pdf" download
+             class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400 bg-cyan-500/20 hover:bg-cyan-500/40 transition text-[0.7rem] tracking-[0.18em] uppercase">
+            <span class="text-lg leading-none">⭳</span>
+            <span>Download</span>
+          </a>
+        </div>
+      </div>
     </div>
-    <a href="downloads1/rescuerover.pdf" download class="download-btn">Download</a>
-  </div>
 
-  <div class="download-item">
-    <div class="download-item__info">
-      <p class="download-item__name">Group 3 (PDF)</p>
-      <p class="download-item__desc">Home Monitoring System</p>
-    </div>
-    <a href="downloads1/monitoring.pdf" download class="download-btn">Download</a>
-  </div>
-
-  
-  
-</section>
+    <p class="mt-6 text-xs text-right text-gray-400 max-w-5xl mx-auto">
+      Tip: You can add more cards here for new projects or update the file sizes and links anytime.
+    </p>
+  </section>
 
   <!-- About -->
   <section id="about" class="py-20 px-6 max-w-6xl mx-auto">
@@ -187,22 +211,18 @@
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("loader").style.display = "none";
-      }, 2000); // stays 4s, change to 6000 for 6s
+      }, 2000);
     });
 
-
-
-    
-    document.getElementById("goToPageButton1" ).onclick = function() {
-        window.location.href = "new.html"; 
+    document.getElementById("goToPageButton1").onclick = function() {
+      window.location.href = "new.html"; 
     };
-     document.getElementById("goToPageButton2" ).onclick = function() {
-        window.location.href = "new.html"; 
+    document.getElementById("goToPageButton2").onclick = function() {
+      window.location.href = "new.html"; 
     };
-     document.getElementById("goToPageButton3").onclick = function() {
-        window.location.href = "new.html"; 
+    document.getElementById("goToPageButton3").onclick = function() {
+      window.location.href = "new.html"; 
     };
-
 
     // Mobile menu toggle
     const menuBtn = document.getElementById("menu-btn");
@@ -214,9 +234,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
