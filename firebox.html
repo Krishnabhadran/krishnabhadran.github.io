@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firebox Browser</title>
+  <meta name="description" content="Firebox — a fast, private, and secure web browser." />
+  <style>
+    :root{
+      --bg:#0b0f1a; --card:#11162a; --accent:#ff6a00; --text:#e9ecff; --muted:#aab0ff;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; background:radial-gradient(1200px 600px at 10% -10%, #1a1f3a, transparent), var(--bg); color:var(--text)}
+    header{padding:28px 20px; position:sticky; top:0; backdrop-filter: blur(8px); background:rgba(11,15,26,.6)}
+    .nav{max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between}
+    .logo{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.5px}
+    .logo span{color:var(--accent)}
+    .btn{background:linear-gradient(135deg,#ff8a00,#ff3d00); color:#111; padding:10px 16px; border-radius:12px; text-decoration:none; font-weight:700}
+    main{max-width:1100px; margin:40px auto; padding:0 20px}
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:center}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:22px}
+    h1{font-size:48px; line-height:1.05; margin:0 0 12px}
+    p{color:var(--muted)}
+    .features{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px}
+    .feature{background:var(--card); border-radius:16px; padding:18px}
+    footer{border-top:1px solid rgba(255,255,255,.12); margin-top:50px}
+    footer .wrap{max-width:1100px; margin:auto; padding:20px; color:#9aa1ff}
+    @media(max-width:900px){.hero{grid-template-columns:1fr} h1{font-size:38px} .features{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">🔥 <strong>Fire<span>box</span></strong></div>
+      <a class="btn" href="#download">Download</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="card">
+        <h1>Firebox Browser</h1>
+        <p>Fast. Private. Secure. Firebox is a modern web browser focused on speed, privacy, and clean design. Built as an original project inspired by open web principles.</p>
+        <p><strong>Note:</strong> Firebox is an independent, original concept and is <em>not</em> affiliated with Mozilla or Firefox.</p>
+        <a id="download" class="btn" href="#">Get Firebox</a>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" alt="Browser preview" style="width:100%; border-radius:14px" />
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h3>⚡ Speed</h3>
+        <p>Optimized rendering and lightweight design for faster browsing.</p>
+      </div>
+      <div class="feature">
+        <h3>🛡️ Privacy</h3>
+        <p>Built-in tracker blocking and private browsing tools.</p>
+      </div>
+      <div class="feature">
+        <h3>🎨 Clean UI</h3>
+        <p>Minimal, distraction‑free interface with dark mode.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2025 Firebox. All rights reserved.</div>
+  </footer>
+</body>
+</html>
